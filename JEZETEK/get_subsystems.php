@@ -12,7 +12,7 @@ mysql_query("set names utf8");
 //输出
 $arr=array();
 $arr['name']='DEVISER组态工作栈管理系统';
-$arr['icon']='../../../icons/系统架构/总系统.png';
+$arr['icon']='总系统';
 $arr['open']=true;
 $arr['isParent']=true;
 $arr['children']=array();
@@ -34,40 +34,65 @@ while($result=mysql_fetch_array($check_query))
 		//图标
 		if($result1['power_status']=='已上电'&&$result1['connect_method']=='TCP/IP')
 		{
-			$chidren_1['icon']='../../icons/系统架构/TCP通讯_已上电.png';
+			$chidren_1['icon']="TCP通讯_已上电";
 		}
 		elseif($result1['power_status']=='已上电'&&$result1['connect_method']=='USB')
 		{
-			$chidren_1['icon']='../icons/系统架构/USB通讯_已上电.png';
+			$chidren_1['icon']='USB通讯_已上电';
 		}
 		elseif($result1['power_status']=='已上电'&&$result1['connect_method']=='CAN')
 		{
-			$chidren_1['icon']='../../../icons/系统架构/CAN通讯_已上电.png';
+			$chidren_1['icon']='CAN通讯_已上电';
 		}
 		elseif($result1['power_status']=='未上电'&&$result1['connect_method']=='CAN')
 		{
-			$chidren_1['icon']='../../../icons/系统架构/CAN通讯_未上电.png';
+			$chidren_1['icon']='CAN通讯_未上电';
 		}
-		elseif($result1['power_status']=='未上电'&&$result1['connect_method']!='CAN')
-		{
-			$chidren_1['icon']='../../../icons/系统架构/CAN通讯_未上电.png';
-		}
+		// elseif($result1['power_status']=='未上电'&&$result1['connect_method']!='CAN')
+		// {
+		// 	$chidren_1['icon']='未上电';
+		// }
 		elseif($result1['power_status']=='已离线')
 		{
-			$chidren_1['icon']='../../../icons/系统架构/已离线.png';
+			$chidren_1['icon']='已离线';
 		}
-		
+
 		$chidren_1['children']=array();
 		$sql2="SELECT * FROM devices where unit_id='".$result1['unit_id']."'";
 		$check_query2 = mysql_query($sql2);
 		while($result2=mysql_fetch_array($check_query2))
 		{
-			$chidren_2['id']=$result2['device_id'];
-			$chidren_2['name']=$result2['device_name'];
-			$chidren_2['type']='device';
-			$chidren_2['all_num']='';
-			$chidren_2['chno']=$result2['chno'];
-			array_push($chidren_1['children'],$chidren_2);
+			$children_2['id']=$result2['device_id'];
+			$children_2['name']=$result2['device_name'];
+			$children_2['type']='device';
+			$children_2['all_num']='';
+			$children_2['chno']=$result2['chno'];
+			//图标
+			if($result2['power_status']=='已上电'&&$result2['connect_method']=='TCP/IP')
+			{
+				$children_2['icon']="TCP通讯_已上电";
+			}
+			elseif($result2['power_status']=='已上电'&&$result2['connect_method']=='USB')
+			{
+				$children_2['icon']='USB通讯_已上电';
+			}
+			elseif($result2['power_status']=='已上电'&&$result2['connect_method']=='CAN')
+			{
+				$children_2['icon']='CAN通讯_已上电';
+			}
+			elseif($result2['power_status']=='未上电'&&$result2['connect_method']=='CAN')
+			{
+				$children_2['icon']='CAN通讯_未上电';
+			}
+			// elseif($result2['power_status']=='未上电'&&$result2['connect_method']!='CAN')
+			// {
+			// 	$children_2['icon']='未上电';
+			// }
+			elseif($result2['power_status']=='已离线')
+			{
+				$children_2['icon']='已离线';
+			}
+			array_push($chidren_1['children'],$children_2);
 		}
 		array_push($children['children'],$chidren_1);
 	}
@@ -84,43 +109,68 @@ while($result1=mysql_fetch_array($check_query1))
 		$chidren_1['id']=$result1['unit_id'];
 		$chidren_1['name']=$result1['unit_name'];
 		$chidren_1['type']='unit';
-		//图标
+		///图标
 		if($result1['power_status']=='已上电'&&$result1['connect_method']=='TCP/IP')
 		{
-			$chidren_1['icon']='../../../icons/系统架构/TCP通讯_已上电.png';
+			$chidren_1['icon']="TCP通讯_已上电";
 		}
 		elseif($result1['power_status']=='已上电'&&$result1['connect_method']=='USB')
 		{
-			$chidren_1['icon']='../../../icons/系统架构/USB通讯_已上电.png';
+			$chidren_1['icon']='USB通讯_已上电';
 		}
 		elseif($result1['power_status']=='已上电'&&$result1['connect_method']=='CAN')
 		{
-			$chidren_1['icon']='../../../icons/系统架构/CAN通讯_已上电.png';
+			$chidren_1['icon']='CAN通讯_已上电';
 		}
 		elseif($result1['power_status']=='未上电'&&$result1['connect_method']=='CAN')
 		{
-			$chidren_1['icon']='../../../icons/系统架构/CAN通讯_未上电.png';
+			$chidren_1['icon']='CAN通讯_未上电';
 		}
-		elseif($result1['power_status']=='未上电'&&$result1['connect_method']!='CAN')
-		{
-			$chidren_1['icon']='../../../icons/系统架构/CAN通讯_未上电.png';
-		}
+		// elseif($result1['power_status']=='未上电'&&$result1['connect_method']!='CAN')
+		// {
+		// 	$chidren_1['icon']='未上电';
+		// }
 		elseif($result1['power_status']=='已离线')
 		{
-			$chidren_1['icon']='../../../icons/系统架构/已离线.png';
+			$chidren_1['icon']='已离线';
 		}
-		
+
 		$chidren_1['children']=array();
 		$sql2="SELECT * FROM devices where unit_id='".$result1['unit_id']."'";
 		$check_query2 = mysql_query($sql2);
 		while($result2=mysql_fetch_array($check_query2))
 		{
-			$chidren_2['id']=$result2['device_id'];
-			$chidren_2['name']=$result2['device_name'];
-			$chidren_2['type']='device';
-			$chidren_2['all_num']='';
-			$chidren_2['chno']=$result2['chno'];
-			array_push($chidren_1['children'],$chidren_2);
+			$children_2['id']=$result2['device_id'];
+			$children_2['name']=$result2['device_name'];
+			$children_2['type']='device';
+			$children_2['all_num']='';
+			$children_2['chno']=$result2['chno'];
+			//图标
+			if($result2['power_status']=='已上电'&&$result2['connect_method']=='TCP/IP')
+			{
+				$children_2['icon']="TCP通讯_已上电";
+			}
+			elseif($result2['power_status']=='已上电'&&$result2['connect_method']=='USB')
+			{
+				$children_2['icon']='USB通讯_已上电';
+			}
+			elseif($result2['power_status']=='已上电'&&$result2['connect_method']=='CAN')
+			{
+				$children_2['icon']='CAN通讯_已上电';
+			}
+			elseif($result2['power_status']=='未上电'&&$result2['connect_method']=='CAN')
+			{
+				$children_2['icon']='CAN通讯_未上电';
+			}
+			// elseif($result2['power_status']=='未上电'&&$result2['connect_method']!='CAN')
+			// {
+			// 	$children_2['icon']='未上电';
+			// }
+			elseif($result2['power_status']=='已离线')
+			{
+				$children_2['icon']='已离线';
+			}
+			array_push($chidren_1['children'],$children_2);
 		}
 		array_push($arr['children'],$chidren_1);
 	}
