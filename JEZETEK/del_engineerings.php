@@ -12,6 +12,16 @@ mysql_query("set names utf8");
 
 $sql="DELETE FROM engineerings WHERE engineering_id='".$id."'";
 mysql_query($sql);
+$sql="DELETE FROM engineering_data WHERE engineering_id='".$id."'";
+mysql_query($sql);
+$sql="DELETE FROM engineering_log WHERE engineering_id='".$id."'";
+mysql_query($sql);
+$sql="DELETE FROM engineering_used_virtual_device WHERE engineering_id='".$id."'";
+mysql_query($sql);
+$sql="DELETE FROM engineering_user_canuse WHERE engineering_id='".$id."'";
+mysql_query($sql);
+$sql="DELETE FROM engineerings_members WHERE engineering_id='".$id."'";
+mysql_query($sql);
 
 //输出
 $arr=array();
