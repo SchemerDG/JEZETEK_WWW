@@ -60,24 +60,6 @@ while($result=mysql_fetch_array($check_query))
 		}
 		$result1=array();
 	
-		$sql="SELECT * FROM engineerings_members where engineering_id='".$result['engineering_id']."'";
-		$check_query2 = mysql_query($sql);
-		$i=0;
-		$children['member']=array();
-		while($result2=mysql_fetch_array($check_query2))
-		{
-			$children['member'][$i]['id']=$result2['user_id'];
-			$sql="SELECT * FROM LOGIN_USER where user_id='".$result2['user_id']."'";
-			$check_query3= mysql_query($sql);
-			if($result3=mysql_fetch_array($check_query3))
-			{
-				$children['member'][$i]['name']=$result3['USER_NAME'];
-				$result2=array();
-			}
-			$i++;
-			$result2=array();
-		}
-		$result1=array();
 	$children['description']=$result['description'];
 	$children['version_description']=$result['version_description'];
 	

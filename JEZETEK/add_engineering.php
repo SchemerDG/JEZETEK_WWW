@@ -24,11 +24,9 @@ $check_query=mysql_query($sql);
 if($result=mysql_fetch_array($check_query))
 {
 	$sql="INSERT INTO engineering_data(engineering_id, data,data_x) VALUES ('".$result['engineering_id']."','".$data['eng_data']."','')";
-	$arr[]=$sql;
-
-	mysql_query($sql);
+	$arr[]=mysql_query($sql);
+	$arr['eng_id']=$result['engineering_id'];
 }
-$arr[]=true;
 echo json_encode($arr);
 mysql_close($con);
 ?>
